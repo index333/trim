@@ -1,0 +1,3 @@
+runghc fc.hs > fn
+runghc t.hs | runghc t2.hs
+runghc del.hs
