@@ -4,13 +4,15 @@ main = do
     print ()
     f <- readFile "fn"
     let (dir, fn)  = splitFileName f
-    fs <- listDirectory dir
-    mapM_ print fs
+    setCurrentDirectory dir
+    fs <- listDirectory "."
+    let fss = filter (\x -> takeExtension x == ".flac") fs
+    mapM_ print fss
     print ()
+    putStrLn "元のファイル"
     print fn
-    print "delete? y/n"
+    putStrLn "を消去しますか？ (y/n)"
     t <- getLine
-    if t == "y" 
+    if t == "y"
         then removeFile f
         else return ()
-    
