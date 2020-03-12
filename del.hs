@@ -1,5 +1,6 @@
 import System.Directory
 import System.FilePath.Posix
+import System.Process
 main = do
     print ()
     f <- readFile "fn"
@@ -13,6 +14,7 @@ main = do
     print fn
     putStrLn "を消去しますか？ (y/n)"
     t <- getLine
-    if t == "y"
+    if t == "y" 
         then removeFile f
         else return ()
+    

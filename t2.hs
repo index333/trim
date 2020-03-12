@@ -1,7 +1,6 @@
 import System.Directory
 import System.FilePath.Posix
 import System.Process
-import HSox
 getC :: IO Double
 getC = do
     c <- getContents 
@@ -34,5 +33,7 @@ doComs f d l = do
                     trim f (nf f x) x (d + 10)) (init l)
     let x = last l
     trim f (nf f x) x d
+trim :: FilePath -> FilePath -> Double -> Double -> IO ()
+trim input output startPoint duration = createProcess (proc "sox" [input, output,"trim", show startPoint, show duration]) >> return ()
     
 nf f x = "trimed" ++ show (round x) ++ takeBaseName f ++ ".flac"
